@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="9Ob-kp-XIA">
             <objects>
-                <viewController id="4Mn-Jg-m8t" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Mn-Jg-m8t" customClass="LoginViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6LY-29-aXe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,58 +37,68 @@
                         <viewLayoutGuide key="safeArea" id="LqF-JC-Pgq"/>
                     </view>
                     <connections>
-                        <segue destination="D6v-UK-SuG" kind="show" identifier="loginSegue" id="eV5-7q-Vsz"/>
+                        <segue destination="b8Q-7x-7rR" kind="presentation" identifier="loginSegue" id="dAF-Ld-Akk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9T-0H-FYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="290" y="101"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="aTt-hn-FtW">
+        <!--Home-->
+        <scene sceneID="ggc-Vf-LqW">
             <objects>
-                <tableViewController id="TsI-eq-JhA" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CWG-qW-SRN">
+                <tableViewController id="RGg-sj-vxs" customClass="HomeTableViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jp7-sM-5Ff">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rqt-0l-Xt1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yfj-Qn-zLF">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rqt-0l-Xt1" id="LpK-Bl-xpn">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yfj-Qn-zLF" id="Wqm-4m-q1S">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="TsI-eq-JhA" id="ObM-F5-L4Q"/>
-                            <outlet property="delegate" destination="TsI-eq-JhA" id="Oa3-Gw-ddU"/>
+                            <outlet property="dataSource" destination="RGg-sj-vxs" id="hap-Cl-os3"/>
+                            <outlet property="delegate" destination="RGg-sj-vxs" id="lBT-gi-a5L"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="1re-No-4vk"/>
+                    <navigationItem key="navigationItem" title="Home" id="ezm-mA-3Ok">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="697-C6-RJV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logoutTapped:" destination="RGg-sj-vxs" id="4nI-8Q-Jc4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uIA-5I-Nbl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GbF-ms-9BC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-183" y="1718"/>
+            <point key="canvasLocation" x="-407" y="1782"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="mEN-w0-FVQ">
+        <scene sceneID="rpe-fZ-c3b">
             <objects>
-                <navigationController id="D6v-UK-SuG" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="mRu-ir-aUz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TwU-39-168">
+                <navigationController id="b8Q-7x-7rR" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="azb-QL-4Cs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="TsI-eq-JhA" kind="relationship" relationship="rootViewController" id="N1S-nY-thB"/>
+                        <segue destination="RGg-sj-vxs" kind="relationship" relationship="rootViewController" id="qTI-oe-EIC"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eNb-W2-c4Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wsu-jp-K8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-182" y="934"/>
+            <point key="canvasLocation" x="-407" y="976"/>
         </scene>
     </scenes>
 </document>
