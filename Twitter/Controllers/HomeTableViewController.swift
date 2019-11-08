@@ -13,6 +13,7 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - Props
     
+    
     var tweetsArray = [NSDictionary]()
     var numberOfTweets: Int!
     let myRefreshContol = UIRefreshControl()
@@ -25,6 +26,11 @@ class HomeTableViewController: UITableViewController {
         myRefreshContol.addTarget(self, action: #selector(retrieveTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshContol
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        retrieveTweets()
     }
     
     
@@ -77,12 +83,7 @@ class HomeTableViewController: UITableViewController {
         })
     }
     
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == tweetsArray.count {
-            getMoreTweets()
-        }
-    }
+
     
     
     // MARK: - Actions
@@ -93,6 +94,10 @@ class HomeTableViewController: UITableViewController {
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
     }
     
+
+    
+    
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
@@ -102,15 +107,15 @@ class HomeTableViewController: UITableViewController {
         let profileImageUrlHttps = user["profile_image_url_https"] as! String
         let imageUrl = URL(string: profileImageUrlHttps)
         
+        cell.tweetId = tweet["id"] as! Int
         cell.userNameLabel.text = user["name"] as? String
         cell.tweetContentLabel.text = tweet["text"] as? String
         cell.profileImageView.af_setImage(withURL: imageUrl!)
+        cell.setFavorite(tweet["favorited"] as! Bool)
+        cell.setReTweeted(tweet["retweeted"] as! Bool)
         
         return cell
     }
-    
-    
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -122,6 +127,9 @@ class HomeTableViewController: UITableViewController {
         return tweetsArray.count
     }
 
-   
-
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         if indexPath.row + 1 == tweetsArray.count {
+             getMoreTweets()
+         }
+     }
 }
